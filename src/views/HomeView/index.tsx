@@ -62,7 +62,8 @@ export const HomeView: FC = ({}) => {
                   {publicKey ? <>Your address: {publicKey.toBase58()}</> : null}
                 </p>
                 <p>
-                  {urlClaim ? <>Your Claim Url:</> : null}
+                {publicKey ? <>{urlClaim ? <>Your Claim Url:</> : <>You cant Claim</> }</> : null}
+                  
                 </p>
                 {urlClaim ? <>
                 <button onClick={clickHandle}>Claim $PONQUE</button>
