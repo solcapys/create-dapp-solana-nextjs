@@ -5,7 +5,7 @@ https://user-images.githubusercontent.com/188568/142045700-091d598f-5b1a-48fa-92
 
 
 
-## 🛵 ◍ Demo: https://create-dapp-solana-nextjs.vercel.app/
+## 🛵 ◍ Demo: https://solcapys-dapp.vercel.app/
 
 This project includes:
 
