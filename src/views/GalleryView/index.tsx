@@ -45,7 +45,7 @@ export const GalleryView: FC = ({}) => {
               <ul className="text-xl">
                 <li>
                   <Link href="/">
-                    <a>Templates</a>
+                    <a>Options</a>
                   </Link>
                 </li>
                 <li>
