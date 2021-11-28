@@ -15,26 +15,13 @@ export const GalleryView: FC = ({}) => {
   if (publicKey) {
     walletPublicKey=publicKey?.toBase58();
   }
-  const [walletToParsePublicKey, setWalletToParsePublicKey] =
-    useState<string>(walletPublicKey);
-
 
   const { nfts, isLoading, error } = useWalletNfts({
-    publicAddress: walletToParsePublicKey,
+    publicAddress: walletPublicKey,
   });
 
-  //console.log("nfts", nfts);
-  //console.log(walletPublicKey)
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
-    setWalletToParsePublicKey(value.trim());
-  };
 
-  const onUseWalletClick = () => {
-    if (publicKey) {
-      setWalletToParsePublicKey(publicKey?.toBase58());
-    }
-  };
+
 
   return (
     <div className="container mx-auto max-w-6xl p-8 2xl:px-0">
