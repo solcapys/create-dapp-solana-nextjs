@@ -56,13 +56,13 @@ export const HomeView: FC = ({}) => {
                   This app lets you check your claiming link easier!
                 </p>
                 <p className="mb-5">
-                  Check your Claiming Link mates COnnect your Wallet!
+                  Check your Claiming Link mates!! Connect your Wallet!
                 </p>
                 <p>
                   {publicKey ? <>Your address: {publicKey.toBase58()}</> : null}
                 </p>
                 <p>
-                {publicKey ? <>{urlClaim ? <>Your Claim Url:</> : <>You cant Claim</> }</> : null}
+                {publicKey ? <>{urlClaim ? <>Your Claim Url:</> : <>You can't Claim</> }</> : null}
                   
                 </p>
                 {urlClaim ? <>
@@ -78,7 +78,7 @@ export const HomeView: FC = ({}) => {
               <li>
                 <Link href="/gallery">
                   <a className="mb-5 text-4xl font-bold hover:underline">
-                    1 -- NFT Gallery
+                    1 -- Capys Gallery
                   </a>
                 </Link>
               </li>

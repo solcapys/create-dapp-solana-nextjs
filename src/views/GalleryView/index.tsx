@@ -7,19 +7,23 @@ import { useWalletNfts, NftTokenAccount } from "@nfteyez/sol-rayz-react";
 import { Loader, SolanaLogo, SelectAndConnectWalletButton } from "components";
 import { NftCard } from "./NftCard";
 import styles from "./index.module.css";
-const walletPublicKey = "3EqUrFrjgABCWAnqMYjZ36GcktiwDtFdkNYwY6C6cDzy";
+var walletPublicKey = "";
 
 export const GalleryView: FC = ({}) => {
+  const { publicKey } = useWallet();
+  if (publicKey) {
+    walletPublicKey=publicKey?.toBase58();
+  }
   const [walletToParsePublicKey, setWalletToParsePublicKey] =
     useState<string>(walletPublicKey);
-  const { publicKey } = useWallet();
+
 
   const { nfts, isLoading, error } = useWalletNfts({
     publicAddress: walletToParsePublicKey,
   });
 
-  console.log("nfts", nfts);
-
+  //console.log("nfts", nfts);
+  //console.log(walletPublicKey)
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     setWalletToParsePublicKey(value.trim());
@@ -49,7 +53,7 @@ export const GalleryView: FC = ({}) => {
                   </Link>
                 </li>
                 <li>
-                  <span className="opacity-40">NFT Gallery</span>
+                  <span className="opacity-40">Capys Gallery</span>
                 </li>
               </ul>
             </div>
@@ -58,54 +62,14 @@ export const GalleryView: FC = ({}) => {
             <WalletMultiButton className="btn btn-ghost" />
           </div>
         </div>
-
+        {publicKey ? <>
         <div className="text-center pt-2">
           <div className="hero min-h-16 p-0 pt-10">
             <div className="text-center hero-content w-full">
               <div className="w-full">
                 <h1 className="mb-5 text-5xl">
-                  NFT Gallery on Solana <SolanaLogo />
+                  Capys Gallery
                 </h1>
-
-                <div className="w-full min-w-full">
-                  <p className="mb-5">
-                    Here is very basic example of NFT Gallery. <br />
-                    It uses{" "}
-                    <a
-                      href="https://www.npmjs.com/package/@nfteyez/sol-rayz-react"
-                      target="_blank"
-                      className="link font-bold"
-                      rel="noreferrer"
-                    >
-                      @nfteyez/sol-rayz-react
-                    </a>{" "}
-                    package to fetch NFTs for specific wallet.
-                  </p>
-                  <div>
-                    <div className="form-control mt-8">
-                      <label className="input-group input-group-vertical input-group-lg">
-                        <span>Search</span>
-                        <div className="flex space-x-2">
-                          <input
-                            type="text"
-                            placeholder="Enter Wallet Address"
-                            className="w-full input input-bordered input-lg"
-                            value={walletToParsePublicKey}
-                            onChange={onChange}
-                            style={{
-                              borderRadius:
-                                "0 0 var(--rounded-btn,.5rem) var(--rounded-btn,.5rem)",
-                            }}
-                          />
-
-                          <SelectAndConnectWalletButton
-                            onUseWalletClick={onUseWalletClick}
-                          />
-                        </div>
-                      </label>
-                    </div>
-                  </div>
-                </div>
                 <div className="my-10">
                   {error ? (
                     <div>
@@ -126,6 +90,7 @@ export const GalleryView: FC = ({}) => {
             </div>
           </div>
         </div>
+        </> : null}
       </div>
     </div>
   );
@@ -136,10 +101,12 @@ type NftListProps = {
 };
 
 const NftList = ({ nfts }: NftListProps) => {
+  var filteredNfts = nfts?.filter((nfts)=>nfts.updateAuthority=="7PZBB8Nbskv29FrfUSa6dTuhmEBrrqTadnkR9c6gThmt");
+  // console.log(filteredNfts)
   return (
     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 items-start">
-      {nfts?.map((nft) => (
-        <NftCard key={nft.mint} details={nft} onSelect={() => {}} />
+      {filteredNfts?.map((filteredNfts) => (
+        <NftCard key={filteredNfts.mint} details={filteredNfts} onSelect={() => {}} />
       ))}
     </div>
   );
