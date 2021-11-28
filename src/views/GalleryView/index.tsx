@@ -7,10 +7,11 @@ import { useWalletNfts, NftTokenAccount } from "@nfteyez/sol-rayz-react";
 import { Loader, SolanaLogo, SelectAndConnectWalletButton } from "components";
 import { NftCard } from "./NftCard";
 import styles from "./index.module.css";
-var walletPublicKey = "";
+
 
 export const GalleryView: FC = ({}) => {
   const { publicKey } = useWallet();
+  var walletPublicKey = "";
   if (publicKey) {
     walletPublicKey=publicKey?.toBase58();
   }
