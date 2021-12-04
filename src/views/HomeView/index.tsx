@@ -66,7 +66,7 @@ export const HomeView: FC = ({}) => {
                   
                 </p>
                 {urlClaim ? <>
-                <button onClick={clickHandle}>Claim $PONQUE</button>
+                <button onClick={clickHandle} className="btn btn-primary">Claim $PONQUE</button>
                 </> : null}
               </div>
             </div>
